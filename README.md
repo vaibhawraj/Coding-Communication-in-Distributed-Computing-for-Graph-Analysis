@@ -34,12 +34,12 @@ $ ssh-keygen -t rsa
 $ cp ~/.ssh/id_rsa.pub ~/.ssh/authorized_keys
 ```
 
-3. Copy authorization key from master to every node
+3. Copy authorization key from master to every worker node
 ```bash
 $ scp -r ~/.ssh ubuntu@node1_ip:~/
 ```
 
-4. Repeat previous step for every node
+4. Repeat previous step for every worker node
 
 ## Setting up MCP
 
@@ -65,7 +65,7 @@ R = [2, 3] # Number of redundant instance of Node
 K = 4 # Number of workers
 ```
 
-1. Modify machinefile to include private IPv4 address for master and each node in following syntax
+1. Modify machinefile to include private IPv4 address for master and each worker nodes in following syntax
 
 ```bash
 $ cd ~/CPR
@@ -77,13 +77,19 @@ $ vim machinefile
 10.8.0.5 slots=1
 ```
 
-2. Execute runScript.py (this step would take 10-15 minutes)
+2. Copy script "cp.sh" ensures that master and worker nodes are sync in terms of generated graph files. Make it executable as well
+
+```bash
+$ chmod +x cp.sh
+```
+
+3. Execute runScript.py (this step would take 10-15 minutes)
 
 ```bash
 $ python3 runScript.py
 ```
 
-3. Analyze the results
+4. Analyze the results
 ```bash
 $ cd ~/CPR/result
 $ cat uncoded.csv
