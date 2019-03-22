@@ -3,7 +3,8 @@
 ## Setting up AWS Instance
 
 1. Create 5 AWS EC2 Ubuntu Instance (make sure all instance have same VPC and subnet)
-2. Setup password for 'ubuntu' user on every AWS instance in order to SCP from one instance to another instance.
+2. Add security group to allow all inbound and outbound traffic
+3. Setup password for 'ubuntu' user on every AWS instance in order to SCP from one instance to another instance.
 
 ```bash
 $ sudo passwd ubuntu
@@ -11,7 +12,7 @@ Enter unix password: default
 Reenter unix password: default
 ```
 
-3. Enable password login by editing sshd_config and replace "PasswordAuthenticationn No" to "PasswordAuthentication Yes"
+4. Enable password login by editing sshd_config and replace "PasswordAuthenticationn No" to "PasswordAuthentication Yes"
 
 ```bash
 sudo vim /etc/ssh/sshd_config
